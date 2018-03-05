@@ -1,6 +1,6 @@
-Sonar C++ Plugin (Community)
-Copyright (C) 2010-2017 SonarOpenCommunity
-http://github.com/SonarOpenCommunity/sonar-cxx
+Sonar OpenCommunity Metrics (Community)
+Copyright (C) 2017 SonarOpenCommunity
+http://github.com/SonarOpenCommunity/sonar-opencommunity-metrics
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
