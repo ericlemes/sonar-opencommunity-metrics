@@ -1,7 +1,7 @@
-/*
- * Example Plugin for SonarQube
- * Copyright (C) 2009-2016 SonarSource SA
- * mailto:contact AT sonarsource DOT com
+/**
+ * Sonar C++ Plugin (Community)
+ * Copyright (C) 2010-2017 SonarOpenCommunity
+ * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
