@@ -25,6 +25,7 @@ import java.util.List;
 import org.sonar.api.Plugin;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
+import org.sonar.opencommunity.measures.LoCInFunctionsMeasureComputer;
 
 public class MetricsPlugin implements Plugin{
   
@@ -35,5 +36,6 @@ public class MetricsPlugin implements Plugin{
     LOG.debug("Registering OpenCommunityMetrics");       
     
     context.addExtension(OpenCommunityMetrics.class);
+    context.addExtension(LoCInFunctionsMeasureComputer.class);
   }
 }

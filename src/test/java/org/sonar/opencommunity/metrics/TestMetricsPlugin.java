@@ -24,6 +24,7 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
 import org.sonar.api.Plugin.Context;
+import org.sonar.opencommunity.measures.LoCInFunctionsMeasureComputer;
 
 public class TestMetricsPlugin {
   
@@ -43,5 +44,6 @@ public class TestMetricsPlugin {
     this.plugin.define(context);
         
     verify(this.context).addExtension(OpenCommunityMetrics.class);                 
+    verify(this.context).addExtension(LoCInFunctionsMeasureComputer.class);
   }
 }

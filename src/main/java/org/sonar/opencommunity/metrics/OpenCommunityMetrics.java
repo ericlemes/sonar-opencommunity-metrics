@@ -34,21 +34,21 @@ public class OpenCommunityMetrics implements Metrics {
     .setDomain(CoreMetrics.DOMAIN_COMPLEXITY)
     .create();
   
-  public static final Metric<Double> PERC_COMPLEX_FUNCTIONS = new Metric.Builder("perc_complex_functions", "Complex Functions (%)", Metric.ValueType.PERCENT)
+  public static final Metric<Double> COMPLEX_FUNCTIONS_PERC = new Metric.Builder("perc_complex_functions", "Complex Functions (%)", Metric.ValueType.PERCENT)
     .setDescription("% of functions with high cyclomatic complexity")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
     .setDomain(CoreMetrics.DOMAIN_COMPLEXITY)
     .create();         
   
-  public static final Metric<Integer> LOC_IN_COMPLEX_FUNCTIONS = new Metric.Builder("loc_in_complex_functions", "Complex Functions Lines of Code", Metric.ValueType.INT)
+  public static final Metric<Integer> COMPLEX_FUNCTIONS_LOC = new Metric.Builder("loc_in_complex_functions", "Complex Functions Lines of Code", Metric.ValueType.INT)
     .setDescription("Number of lines of code in functions with high cyclomatic complexity")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
     .setDomain(CoreMetrics.DOMAIN_COMPLEXITY)
     .create();  
   
-  public static final Metric<Double> PERC_LOC_IN_COMPLEX_FUNCTIONS = new Metric.Builder("perc_loc_in_complex_functions", "Complex Functions Lines of Code (%)", Metric.ValueType.PERCENT)
+  public static final Metric<Double> COMPLEX_FUNCTIONS_LOC_PERC = new Metric.Builder("perc_loc_in_complex_functions", "Complex Functions Lines of Code (%)", Metric.ValueType.PERCENT)
     .setDescription("% of lines of code in functions with high cyclomatic complexity")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
@@ -62,21 +62,21 @@ public class OpenCommunityMetrics implements Metrics {
     .setDomain(CoreMetrics.DOMAIN_SIZE)
     .create();
   
-  public static final Metric<Integer> LOC_IN_BIG_FUNCTIONS = new Metric.Builder("loc_in_big_functions", "Big Functions Lines of Code", Metric.ValueType.INT)
+  public static final Metric<Integer> BIG_FUNCTIONS_LOC = new Metric.Builder("loc_in_big_functions", "Big Functions Lines of Code", Metric.ValueType.INT)
     .setDescription("Number of lines of code in functions with too many lines")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
     .setDomain(CoreMetrics.DOMAIN_SIZE)
     .create();  
   
-  public static final Metric<Double> PERC_BIG_FUNCTIONS = new Metric.Builder("perc_big_functions", "Big Functions (%)", Metric.ValueType.PERCENT)
+  public static final Metric<Double> BIG_FUNCTIONS_PERC = new Metric.Builder("perc_big_functions", "Big Functions (%)", Metric.ValueType.PERCENT)
     .setDescription("% of functions with too many lines")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
     .setDomain(CoreMetrics.DOMAIN_SIZE)
     .create();  
   
-  public static final Metric<Double> PERC_LOC_IN_BIG_FUNCTIONS = new Metric.Builder("perc_loc_in_big_functions", "Big Functions Lines of Code (%)", Metric.ValueType.PERCENT)
+  public static final Metric<Double> BIG_FUNCTIONS_LOC_PERC = new Metric.Builder("perc_loc_in_big_functions", "Big Functions Lines of Code (%)", Metric.ValueType.PERCENT)
     .setDescription("% of lines of code in functions with too many lines")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
@@ -92,7 +92,7 @@ public class OpenCommunityMetrics implements Metrics {
   
   @Override
   public List<Metric> getMetrics() {
-    return asList(COMPLEX_FUNCTIONS, PERC_COMPLEX_FUNCTIONS, LOC_IN_COMPLEX_FUNCTIONS, PERC_LOC_IN_COMPLEX_FUNCTIONS, BIG_FUNCTIONS, PERC_BIG_FUNCTIONS, LOC_IN_BIG_FUNCTIONS, PERC_LOC_IN_BIG_FUNCTIONS, LOC_IN_FUNCTIONS);   
+    return asList(COMPLEX_FUNCTIONS, COMPLEX_FUNCTIONS_PERC, COMPLEX_FUNCTIONS_LOC, COMPLEX_FUNCTIONS_LOC_PERC, BIG_FUNCTIONS, BIG_FUNCTIONS_PERC, BIG_FUNCTIONS_LOC, BIG_FUNCTIONS_LOC_PERC, LOC_IN_FUNCTIONS);   
   }  
   
 }
