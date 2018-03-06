@@ -23,15 +23,17 @@ package org.sonar.opencommunity.metrics;
 import java.util.ArrayList;
 import java.util.List;
 import org.sonar.api.Plugin;
+import org.sonar.api.utils.log.Logger;
+import org.sonar.api.utils.log.Loggers;
 
 public class MetricsPlugin implements Plugin{
+  
+  private final Logger LOG = LoggerWithDebugCheck.get(MetricsPlugin.class); 
 
   @Override
-  public void define(Context context) {
-    List<Object> l = new ArrayList<>();
+  public void define(Context context) {    
+    LOG.debug("Registering OpenCommunityMetrics");       
     
-    l.add(OpenCommunityMetrics.class);
-    
-    context.addExtension(l);
+    context.addExtension(OpenCommunityMetrics.class);
   }
 }

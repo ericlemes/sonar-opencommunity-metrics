@@ -19,10 +19,7 @@
  */
 package org.sonar.opencommunity.metrics;
 
-import java.util.List;
-import static org.junit.Assert.*;
 import org.junit.*;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
@@ -44,13 +41,7 @@ public class TestMetricsPlugin {
   @Test
   public void whenDefiningShouldRegisterOpenCommunityMetrics(){       
     this.plugin.define(context);
-    
-    ArgumentCaptor<Object> captor = ArgumentCaptor.forClass(Object.class);
-    verify(this.context).addExtension(captor.capture());
-    
-    List extensionList = ((List)captor.getValue());
-    
-    assertEquals(1, extensionList.size());
-    assertEquals(OpenCommunityMetrics.class, extensionList.get(0));
+        
+    verify(this.context).addExtension(OpenCommunityMetrics.class);                 
   }
 }
