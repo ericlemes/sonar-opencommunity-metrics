@@ -19,13 +19,20 @@
  */
 package org.sonar.opencommunity.metrics;
 
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
+import static org.junit.Assert.*;
+import org.junit.*;
 
 public class TestOpenCommunityMetrics {
   
+  private OpenCommunityMetrics metrics;
+  
+  @Before
+  public void setUp(){
+    this.metrics = new OpenCommunityMetrics();
+  }
+  
   @Test
-  public void testWhenGetMetricsShouldReturnExpectedMetrics(){    
-    assertTrue(true);
+  public void testWhenGetMetricsShouldReturnExpectedMetricsCount(){    
+    assertEquals(9, metrics.getMetrics().size());
   }
 }

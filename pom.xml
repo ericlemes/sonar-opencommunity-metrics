@@ -59,6 +59,12 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>2.15.0</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -150,10 +156,15 @@
                   <limits>
                     <!-- implementation is needed only for Maven 2 -->
                     <limit implementation="org.jacoco.report.check.Limit">
-                      <counter>COMPLEXITY</counter>
+                      <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0</minimum>
+                      <minimum>100%</minimum>
                     </limit>
+                    <limit implementation="org.jacoco.report.check.Limit">
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>100%</minimum>
+                    </limit>                    
                   </limits>
                 </rule>
               </rules>

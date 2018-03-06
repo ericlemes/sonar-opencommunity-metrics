@@ -17,21 +17,40 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-
 package org.sonar.opencommunity.metrics;
 
-import java.util.ArrayList;
 import java.util.List;
-import org.sonar.api.Plugin;
+import static org.junit.Assert.*;
+import org.junit.*;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Mock;
+import static org.mockito.Mockito.*;
+import org.mockito.MockitoAnnotations;
+import org.sonar.api.Plugin.Context;
 
-public class MetricsPlugin implements Plugin{
-
-  @Override
-  public void define(Context context) {
-    List<Object> l = new ArrayList<>();
+public class TestMetricsPlugin {
+  
+  private MetricsPlugin plugin;
+  
+  @Mock
+  private Context context;
+  
+  @Before
+  public void setUp(){
+    MockitoAnnotations.initMocks(this);
+    this.plugin = new MetricsPlugin();
+  }
+  
+  @Test
+  public void whenDefiningShouldRegisterOpenCommunityMetrics(){       
+    this.plugin.define(context);
     
-    l.add(OpenCommunityMetrics.class);
+    ArgumentCaptor<Object> captor = ArgumentCaptor.forClass(Object.class);
+    verify(this.context).addExtension(captor.capture());
     
-    context.addExtension(l);
+    List extensionList = ((List)captor.getValue());
+    
+    assertEquals(1, extensionList.size());
+    assertEquals(OpenCommunityMetrics.class, extensionList.get(0));
   }
 }
