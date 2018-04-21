@@ -25,6 +25,9 @@ import java.util.List;
 import org.sonar.api.Plugin;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
+import org.sonar.opencommunity.measures.BigFunctionsLoCMeasureComputer;
+import org.sonar.opencommunity.measures.BigFunctionsMeasureComputer;
+import org.sonar.opencommunity.measures.BigFunctionsPercMeasureComputer;
 import org.sonar.opencommunity.measures.LoCInFunctionsMeasureComputer;
 
 public class MetricsPlugin implements Plugin{
@@ -37,5 +40,8 @@ public class MetricsPlugin implements Plugin{
     
     context.addExtension(OpenCommunityMetrics.class);
     context.addExtension(LoCInFunctionsMeasureComputer.class);
+    context.addExtension(BigFunctionsMeasureComputer.class);
+    context.addExtension(BigFunctionsLoCMeasureComputer.class);
+    context.addExtension(BigFunctionsPercMeasureComputer.class);
   }
 }

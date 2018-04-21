@@ -28,7 +28,7 @@ import org.sonar.opencommunity.metrics.OpenCommunityMetrics;
 
 public class MeasureComputerTestHelper {
   
-  public static void setupComponentAndIntMeasure(MeasureComputer.MeasureComputerContext context, 
+  public static Component setupComponentAndIntMeasure(MeasureComputer.MeasureComputerContext context, 
     Component.Type type, int measure, String metricKey){
     
     Component component = mock(Component.class);
@@ -39,6 +39,16 @@ public class MeasureComputerTestHelper {
     
     when(context.getComponent()).thenReturn(component);
     when(context.getMeasure(metricKey)).thenReturn(measureObj);            
+    
+    return component;
+  }
+  
+  public static void addIntMeasure(MeasureComputer.MeasureComputerContext context, 
+          Component component, int measure, String metricKey){
+    Measure measureObj = mock(Measure.class);
+    when(measureObj.getIntValue()).thenReturn(measure);
+    
+    when(context.getMeasure(metricKey)).thenReturn(measureObj);
   }
   
   public static void setupProject(MeasureComputer.MeasureComputerContext context){
