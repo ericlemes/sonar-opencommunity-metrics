@@ -20,31 +20,35 @@
 
 package org.sonar.opencommunity.measures;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import org.mockito.Mock;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.sonar.api.ce.measure.Component;
-import org.sonar.api.ce.measure.Measure;
-import org.sonar.api.ce.measure.MeasureComputer.*;
+import org.sonar.api.ce.measure.MeasureComputer;
 import org.sonar.opencommunity.metrics.OpenCommunityMetrics;
 
-public class TestLoCInFunctionsMeasureComputer {
-  private LoCInFunctionsMeasureComputer measureComputer;
+public class TestBigFunctionsLoCMeasureComputer {
+  private BigFunctionsLoCMeasureComputer measureComputer;
+    
+  @Mock
+  private MeasureComputer.MeasureComputerDefinitionContext definitionContext;
   
   @Mock
-  private MeasureComputerDefinitionContext definitionContext;
+  private MeasureComputer.MeasureComputerDefinition.Builder definitionContextBuilder;
   
   @Mock
-  private MeasureComputerDefinition.Builder definitionContextBuilder;
-  
-  @Mock
-  private MeasureComputerContext context;
+  private MeasureComputer.MeasureComputerContext context;
   
   @Before
   public void setUp(){
     MockitoAnnotations.initMocks(this);
-    this.measureComputer = new LoCInFunctionsMeasureComputer();
+    this.measureComputer = new BigFunctionsLoCMeasureComputer();
     
     when(this.definitionContext.newDefinitionBuilder()).thenReturn(definitionContextBuilder);
     when(this.definitionContextBuilder.setOutputMetrics(anyString())).thenReturn(this.definitionContextBuilder);
@@ -53,23 +57,23 @@ public class TestLoCInFunctionsMeasureComputer {
   @Test
   public void testWhenDefiningShouldReturnCorrectDefinition(){
     this.measureComputer.define(definitionContext);
-    verify(this.definitionContextBuilder).setOutputMetrics(OpenCommunityMetrics.LOC_IN_FUNCTIONS.key());
+    verify(this.definitionContextBuilder).setOutputMetrics(OpenCommunityMetrics.BIG_FUNCTIONS_LOC.key());
     verify(this.definitionContextBuilder).build();
   }
   
   @Test
   public void testWhenCallingComputeShouldComputeSumCorrectly(){        
-    MeasureComputerTestHelper.setupComponentAndIntMeasure(context, Component.Type.FILE, 42, OpenCommunityMetrics.LOC_IN_FUNCTIONS.key());    
+    MeasureComputerTestHelper.setupComponentAndIntMeasure(context, Component.Type.FILE, 42, OpenCommunityMetrics.BIG_FUNCTIONS_LOC.key());    
     this.measureComputer.compute(context);
     
-    MeasureComputerTestHelper.setupComponentAndIntMeasure(context, Component.Type.FILE, 13, OpenCommunityMetrics.LOC_IN_FUNCTIONS.key());    
+    MeasureComputerTestHelper.setupComponentAndIntMeasure(context, Component.Type.FILE, 13, OpenCommunityMetrics.BIG_FUNCTIONS_LOC.key());    
     this.measureComputer.compute(context);
     
     MeasureComputerTestHelper.setupProject(context);
     this.measureComputer.compute(context);
     
-    verify(context).addMeasure(OpenCommunityMetrics.LOC_IN_FUNCTIONS.key(), 55);
-  }
+    verify(context).addMeasure(OpenCommunityMetrics.BIG_FUNCTIONS_LOC.key(), 55);
+  } 
   
   @Test
   public void testWhenCallingComputeWithUnexpectedComponentShouldNotAddMeasure(){
@@ -78,14 +82,16 @@ public class TestLoCInFunctionsMeasureComputer {
     this.measureComputer.compute(context);
     verify(context, times(0)).addMeasure(anyString(), anyInt());
   }  
+
   
   @Test
   public void testWhenCallingComputeWithFileWithNoMeasureShouldNotThrow(){
-    MeasureComputerTestHelper.setupComponentAndIntMeasure(context, Component.Type.FILE, 42, OpenCommunityMetrics.LOC_IN_FUNCTIONS.key());    
-    when(this.context.getMeasure(OpenCommunityMetrics.LOC_IN_FUNCTIONS.key())).thenReturn(null);
+    MeasureComputerTestHelper.setupComponentAndIntMeasure(context, Component.Type.FILE, 42, OpenCommunityMetrics.BIG_FUNCTIONS_LOC.key());    
+    when(this.context.getMeasure(OpenCommunityMetrics.BIG_FUNCTIONS_LOC.key())).thenReturn(null);
     this.measureComputer.compute(context);
     
     verify(context, times(0)).addMeasure(anyString(), anyInt());
   }
     
+
 }

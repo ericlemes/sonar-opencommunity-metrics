@@ -17,40 +17,34 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 package org.sonar.opencommunity.measures;
 
-import static org.mockito.Mockito.*;
 import org.sonar.api.ce.measure.Component;
 import org.sonar.api.ce.measure.Measure;
 import org.sonar.api.ce.measure.MeasureComputer;
-import org.sonar.api.measures.Metric;
 import org.sonar.opencommunity.metrics.OpenCommunityMetrics;
 
-public class MeasureComputerTestHelper {
-  
-  public static void setupComponentAndIntMeasure(MeasureComputer.MeasureComputerContext context, 
-    Component.Type type, int measure, String metricKey){
-    
-    Component component = mock(Component.class);
-    when(component.getType()).thenReturn(type);
-    
-    Measure measureObj = mock(Measure.class);
-    when(measureObj.getIntValue()).thenReturn(measure);
-    
-    when(context.getComponent()).thenReturn(component);
-    when(context.getMeasure(metricKey)).thenReturn(measureObj);            
+public class BigFunctionsLoCMeasureComputer implements MeasureComputer {
+
+  @Override
+  public MeasureComputerDefinition define(MeasureComputerDefinitionContext context) {
+    return context.newDefinitionBuilder()
+      .setOutputMetrics(OpenCommunityMetrics.BIG_FUNCTIONS_LOC.key())
+      .build();    
   }
   
-  public static void setupProject(MeasureComputer.MeasureComputerContext context){
-    Component component = mock(Component.class);
-    when(component.getType()).thenReturn(Component.Type.PROJECT);
-    when(context.getComponent()).thenReturn(component);
-  }
-  
-  public static void setupView(MeasureComputer.MeasureComputerContext context){
-    Component component = mock(Component.class);
-    when(component.getType()).thenReturn(Component.Type.VIEW);
-    when(context.getComponent()).thenReturn(component);
+  private int sum = 0;
+
+  @Override
+  public void compute(MeasureComputerContext context) {
+    if (context.getComponent().getType() == Component.Type.PROJECT)
+      context.addMeasure(OpenCommunityMetrics.BIG_FUNCTIONS_LOC.key(), sum);
+    else if (context.getComponent().getType() == Component.Type.FILE){
+      Measure m = context.getMeasure(OpenCommunityMetrics.BIG_FUNCTIONS_LOC.key());
+      if (m != null)
+        sum += m.getIntValue();
+    }
   }
   
 }
