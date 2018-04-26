@@ -25,8 +25,13 @@ import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
 import org.sonar.api.Plugin.Context;
 import org.sonar.opencommunity.measures.BigFunctionsLoCMeasureComputer;
+import org.sonar.opencommunity.measures.BigFunctionsLoCPercMeasureComputer;
 import org.sonar.opencommunity.measures.BigFunctionsMeasureComputer;
 import org.sonar.opencommunity.measures.BigFunctionsPercMeasureComputer;
+import org.sonar.opencommunity.measures.ComplexFunctionsLoCMeasureComputer;
+import org.sonar.opencommunity.measures.ComplexFunctionsLoCPercMeasureComputer;
+import org.sonar.opencommunity.measures.ComplexFunctionsMeasureComputer;
+import org.sonar.opencommunity.measures.ComplexFunctionsPercMeasureComputer;
 import org.sonar.opencommunity.measures.LoCInFunctionsMeasureComputer;
 
 public class TestMetricsPlugin {
@@ -50,5 +55,11 @@ public class TestMetricsPlugin {
     verify(this.context).addExtension(LoCInFunctionsMeasureComputer.class);
     verify(this.context).addExtension(BigFunctionsMeasureComputer.class);
     verify(this.context).addExtension(BigFunctionsPercMeasureComputer.class);
+    verify(this.context).addExtension(BigFunctionsLoCMeasureComputer.class);
+    verify(this.context).addExtension(BigFunctionsLoCPercMeasureComputer.class);
+    verify(this.context).addExtension(ComplexFunctionsMeasureComputer.class);
+    verify(this.context).addExtension(ComplexFunctionsPercMeasureComputer.class);
+    verify(this.context).addExtension(ComplexFunctionsLoCMeasureComputer.class);
+    verify(this.context).addExtension(ComplexFunctionsLoCPercMeasureComputer.class);
   }
 }

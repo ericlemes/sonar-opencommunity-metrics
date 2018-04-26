@@ -26,8 +26,13 @@ import org.sonar.api.Plugin;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
 import org.sonar.opencommunity.measures.BigFunctionsLoCMeasureComputer;
+import org.sonar.opencommunity.measures.BigFunctionsLoCPercMeasureComputer;
 import org.sonar.opencommunity.measures.BigFunctionsMeasureComputer;
 import org.sonar.opencommunity.measures.BigFunctionsPercMeasureComputer;
+import org.sonar.opencommunity.measures.ComplexFunctionsLoCMeasureComputer;
+import org.sonar.opencommunity.measures.ComplexFunctionsLoCPercMeasureComputer;
+import org.sonar.opencommunity.measures.ComplexFunctionsMeasureComputer;
+import org.sonar.opencommunity.measures.ComplexFunctionsPercMeasureComputer;
 import org.sonar.opencommunity.measures.LoCInFunctionsMeasureComputer;
 
 public class MetricsPlugin implements Plugin{
@@ -43,5 +48,10 @@ public class MetricsPlugin implements Plugin{
     context.addExtension(BigFunctionsMeasureComputer.class);
     context.addExtension(BigFunctionsLoCMeasureComputer.class);
     context.addExtension(BigFunctionsPercMeasureComputer.class);
+    context.addExtension(BigFunctionsLoCPercMeasureComputer.class);
+    context.addExtension(ComplexFunctionsMeasureComputer.class);
+    context.addExtension(ComplexFunctionsLoCMeasureComputer.class);
+    context.addExtension(ComplexFunctionsPercMeasureComputer.class);
+    context.addExtension(ComplexFunctionsLoCPercMeasureComputer.class);
   }
 }
